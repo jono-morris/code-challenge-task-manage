@@ -1,11 +1,17 @@
-<html>
+<!DOCTYPE html>
+
+<html xmlns:th="https://www.thymeleaf.org" th:replace="~{fragments/layout :: layout (~{::body},'home')}">
 
 <head>
-	<link rel="stylesheet" href="markdown.css">
+	<link rel="stylesheet" th:href="@{/resources/css/markdown.css}" />
 	<title>Java Coding Challenge</title>
 </head>
 
 <body>
+
+	<h2 th:text="#{welcome}">Welcome</h2>
+
+
 	<div id="contents" class="markdown-body">
 		<h1 data-line="0" class="code-line-0">Java Coding Challenge - Task Management API Suite</h1>
 		<p data-line="2" class="code-line-2">This is a maven project which uses an embedded derby database to store
@@ -35,7 +41,6 @@
 			<li data-line="28" class="code-line-28">Delete a task.</li>
 		</ol>
 	</div>
-
 
 </body>
 
