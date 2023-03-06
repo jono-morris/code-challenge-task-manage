@@ -27,16 +27,19 @@ import org.springframework.web.servlet.ModelAndView;
 @Controller
 public class TaskController {
 
+	/** The view enabling a {@code Task} instance to be created or updated. */
 	private static final String VIEWS_TASKS_CREATE_OR_UPDATE_FORM = "tasks/createOrUpdateTaskForm";
 
 	/**
-	 * The page size when returning multiple pages of {@code Task}s during a search.
+	 * The max number of {@code Task}s to display per page when displaying multiple
+	 * {@code Task}s.
 	 */
 	private static final int PAGE_SIZE = 5;
 
-	/** The respository for performing CRUD actions of task instances. */
+	/** The {@code Task} repository. */
 	private final TaskRepository tasks;
 
+	/** Constructor. */
 	public TaskController(TaskRepository tasks) {
 		this.tasks = tasks;
 	}
@@ -48,7 +51,7 @@ public class TaskController {
 
 	/**
 	 * Called before each and every @RequestMapping annotated method ensuring we always
-	 * have fresh data, make sure that Task object always has an id.
+	 * have fresh data.
 	 * @param taskId a {@code Task}s Id, optional;
 	 * @return Task
 	 */
@@ -58,8 +61,8 @@ public class TaskController {
 	}
 
 	/**
-	 * Creates a model object for creating a new {@code Task}.
-	 * @return a page allowing task details to be entered
+	 * Creates a model holding {@code Task} attributes for the view.
+	 * @return mapping to a page allowing task details to be entered
 	 */
 	@GetMapping("/tasks/new")
 	public String initCreationForm(ModelMap model) {
@@ -70,10 +73,10 @@ public class TaskController {
 	}
 
 	/**
-	 * Creates a new {@code Task} using provided details.
-	 * @param task the {@code Task} to save
-	 * @param result the result of validating the provided task
-	 * @return a page to display the saved task
+	 * Creates a new {@code Task}.
+	 * @param task details of the {@code Task} to save
+	 * @param result the result of validating the provided task details
+	 * @return a mapping to a page to displaying the saved {@code Task}
 	 */
 	@PostMapping("/tasks/new")
 	public String processCreationForm(@Valid Task task, BindingResult result) {
@@ -88,7 +91,7 @@ public class TaskController {
 
 	/**
 	 * Returns a page providing options for finding {@code Tasks}s.
-	 * @return a page for finding {@code Task}s
+	 * @return mapping to a page for finding {@code Task}s
 	 */
 	@GetMapping("/tasks/find")
 	public String initFindForm() {
@@ -97,13 +100,12 @@ public class TaskController {
 
 	/**
 	 * Fetches all tasks held in the repository.
-	 * @param page which page of results to find when the repository contains a paginated
-	 * list of {@code Task}s
+	 * @param page which page of results to return when the results span multiple pages
 	 * @param result allows an error to be provided in case no tasks were found in the
 	 * repository
-	 * @param model the model attributes for the view
-	 * @return a page displaying details of a single {@code Task} if only one task was
-	 * found else a paginated list of {@code Task}s
+	 * @param model the model holding attributes for the view
+	 * @return a mapping to a page displaying either details of a single {@code Task} if
+	 * only one task was found or a list of {@code Task}s
 	 */
 	@GetMapping("/tasks")
 	public String processFindForm(@RequestParam(defaultValue = "1") int page, Task task, BindingResult result,
@@ -126,13 +128,12 @@ public class TaskController {
 
 	/**
 	 * Fetches all pending overdue tasks held in the repository.
-	 * @param page which page of results to find when the repository contains a paginated
-	 * list of {@code Task}s
+	 * @param page which page of results to return when the results span multiple pages
 	 * @param result allows an error to be provided in case no tasks were found in the
 	 * repository
-	 * @param model the model attributes for the view
-	 * @return a page displaying details of a single {@code Task} if only one task was
-	 * found else a paginated list of {@code Task}s
+	 * @param model the model holding attributes for the view
+	 * @return a mapping to a page displaying either details of a single {@code Task} if
+	 * only one task was found or a list of {@code Task}s
 	 */
 	@GetMapping("/tasks/overdue")
 	public String processFindOverdueForm(@RequestParam(defaultValue = "1") int page, Task task, BindingResult result,
@@ -164,10 +165,9 @@ public class TaskController {
 	}
 
 	/**
-	 * Retrieves a {@code Task} from the repository using the provided id so that the
-	 * {@code Task} details can be edited.
+	 * Retrieves a {@code Task} from the repository for editing.
 	 * @param taskId the id of the {@code Task} to edit
-	 * @return a page allowing task details to be entered
+	 * @return a mapping to a page allowing task details to be entered
 	 */
 	@GetMapping("/tasks/{taskId}/edit")
 	public String initUpdateForm(@PathVariable("taskId") int taskId, ModelMap model) {
@@ -180,9 +180,9 @@ public class TaskController {
 	/**
 	 * Saves the updated {@code Task} using provided details.
 	 * @param task the {@code Task} to save
-	 * @param result the result validating the provided task
+	 * @param result the validation result of the {@code Task}s details
 	 * @param taskId the id of the edited {@code Task}
-	 * @return a page to display the saved task
+	 * @return a mapping to a page to display the saved {@code Task}
 	 */
 	@PostMapping("/tasks/{taskId}/edit")
 	public String processUpdateForm(@Valid Task task, BindingResult result, @PathVariable("taskId") int taskId) {
@@ -197,7 +197,7 @@ public class TaskController {
 
 	/**
 	 * Gets details of a {@code Task} from the repository using the provided id.
-	 * @param taskId the id of the task to display
+	 * @param taskId the id of the task to retrieve
 	 * @return the model attributes for the view
 	 */
 	@GetMapping("/tasks/{taskId}")
@@ -209,9 +209,9 @@ public class TaskController {
 	}
 
 	/**
-	 * Deletes a {@code Task} with the provided id from the repository.
+	 * Deletes a {@code Task} from the repository.
 	 * @param taskId the id of the {@code Task} to delete
-	 * @return a page displaying the remaining tasks
+	 * @return a mapping to a page displaying the remaining tasks
 	 */
 	@DeleteMapping("/tasks/{taskId}")
 	public String deleteTask(@PathVariable("taskId") int taskId) {

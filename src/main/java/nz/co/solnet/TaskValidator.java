@@ -9,24 +9,29 @@ import org.springframework.validation.Validator;
  */
 public class TaskValidator implements Validator {
 
+	/** The message key for fields that require and entry. */
 	private static final String REQUIRED = "required";
 
 	@Override
 	public void validate(Object obj, Errors errors) {
 		Task task = (Task) obj;
 
+		// the title cannot be empty
 		if (!StringUtils.hasLength(task.getTitle())) {
 			errors.rejectValue("title", REQUIRED, REQUIRED);
 		}
 
+		// the description cannot be empty
 		if (!StringUtils.hasLength(task.getDescription())) {
 			errors.rejectValue("description", REQUIRED, REQUIRED);
 		}
 
+		// the Status must be provided
 		if (null == task.getStatus()) {
 			errors.rejectValue("status", REQUIRED, REQUIRED);
 		}
 
+		// the due-date must be set
 		if (task.getDueDate() == null) {
 			errors.rejectValue("dueDate", REQUIRED, REQUIRED);
 		}

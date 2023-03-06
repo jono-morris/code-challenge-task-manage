@@ -1,11 +1,11 @@
 # Java Coding Challenge - Task Management API Suite
 
-This is a Spring Boot application built using Maven providing an API suite that uses HTTP to allow users to manage their task data.
+This is a Spring Boot application built using Maven that provides an API suite 
+using HTTP to allow users to manage their task data.
 
-You can build a jar file from the command line:
+You can build a jar file from the command line in the project root directory:
   
 ```
-cd code-challenge-task-manage
 mvn package
 ```
 
@@ -19,10 +19,12 @@ This project uses an embedded Tomcat server to host the application
 that will be available at [http://localhost:8080](http://localhost:8080)  
 
 An in-memory (H2) database is used, which gets populated with data on startup. 
-The database is available via the console `http://localhost:8080/h2-console/`, 
+The database is available via the console `http://localhost:8080/h2-console/` 
 where it is possible to view database tables using the JDBC URL `jdbc:h2:mem:testdb`.
 
-
+A H2 database is used since it supports `IF EXISTS`, which derby does not.
+This allows the database to be conditionally dropped if required before being created by the
+Spring Framework when the application starts up.
 
 The table structure is provided below:
 

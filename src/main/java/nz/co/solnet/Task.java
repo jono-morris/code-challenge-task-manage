@@ -11,7 +11,7 @@ import javax.persistence.Table;
 import org.springframework.format.annotation.DateTimeFormat;
 
 /**
- * A {@code Task} domain object that is subject to maintenance operations.
+ * A {@code Task} domain object.
  */
 @Entity
 @Table(name = "tasks")
