@@ -3,7 +3,7 @@
 <html xmlns:th="https://www.thymeleaf.org" th:replace="~{fragments/layout :: layout (~{::body},'home')}">
 
 <head>
-	<link rel="stylesheet" th:href="@{/resources/css/markdown.css}" />
+
 	<title>Java Coding Challenge</title>
 </head>
 
@@ -22,7 +22,7 @@
 			<br />
 
 		<h2>Functionality</h2>
-		<p>You can achieve the following actions:</p>
+		<p>You can do the following actions:</p>
 		<ul>
 			<li><b>Fetch all tasks</b> - Select <b>Find Tasks</b> on the home screen then <b>Fetch all Tasks</b>.
 				If the API returns a single task the details of this task will be displayed.
@@ -33,14 +33,14 @@
 				If no tasks are returned the application remains on the <b>Find Tasks</b> page.
 			</li>
 			<li><b>Fetch data for a single task</b> - First select <b>all</b> or <b> all overdue</b> tasks then click
-				a Task's link under the Title column.</li>
+				a Task's link under the <i>Title</i> column.</li>
 			<li><b>Add a new task</b> - Select <b>Find Tasks</b> on the home screen then <b>Add Task</b> to enter the
 				Task's details. Any validation errors will be displayed when attempting to add a task. 
 			</li>
-			<li><b>Modify a task</b> - First fetch data for a <b>single task</b> then select <b>Edit Task</b>.
+			<li><b>Modify a task</b> - First <b>fetch data for a single task</b> then select <b>Edit Task</b>.
 				Any validation errors will be displayed when attempting to modify the task. 
 			</li>
-			<li><b>Delete a task</b> - First fetch data for a <b>single task</b> then select <b>Delete Task</b>.</li>
+			<li><b>Delete a task</b> - First <b>fetch data for a single task</b> then select <b>Delete Task</b>.</li>
 		</ul>
 	</div>
 
