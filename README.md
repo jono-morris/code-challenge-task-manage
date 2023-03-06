@@ -1,6 +1,28 @@
 # Java Coding Challenge - Task Management API Suite
 
-This is a maven project which uses an embedded derby database to store tasks in a table.
+This is a Spring Boot application built using Maven providing an API suite that uses HTTP to allow users to manage their task data.
+
+You can build a jar file from the command line:
+  
+```
+cd code-challenge-task-manage
+mvn package
+```
+
+You can run the application from Maven using the Spring Boot Maven plugin:
+
+```
+mvn spring-boot:run
+```
+
+This project uses an embedded Tomcat server to host the application
+that will be available at [http://localhost:8080](http://localhost:8080)  
+
+An in-memory (H2) database is used, which gets populated with data on startup. 
+The database is available via the console `http://localhost:8080/h2-console/`, 
+where it is possible to view database tables using the JDBC URL `jdbc:h2:mem:testdb`.
+
+
 
 The table structure is provided below:
 
@@ -15,11 +37,10 @@ The table structure is provided below:
 - *creation_date* date not null,
 - *primary key (id)*
 
-Your challenge is to build a production grade API suite that uses HTTP to allow users to manage their task data. 
 
-## Requirements
+## Implementation
 
-You will need to provide APIs for the following actions:  
+The API provides functionality for the following actions: 
  
 1. Fetch all tasks.
 1. Fetch all overdue tasks.
@@ -30,18 +51,11 @@ You will need to provide APIs for the following actions:
 
 
 ## Pre-requisites
-1. Java needs to be installed on the system and environment variable JAVA_HOME should be set correctly to the JDK path.  
+1. Java 8 needs to be installed on the system and environment variable JAVA_HOME should be set correctly to the JDK path.  
    Check by running below command in command prompt  
    `java -version`  
+   
 2. Maven needs to be installed on the system.  
    Check by running below command in command prompt  
    `mvn -v`  
 
-## Run the application
-This project uses Jetty as an embedded container to host the web application.  
-Goto the base folder of the application and execute the following command to launch the application.  
-`mvn jetty:run`  
-
-The application will be available at [http://localhost:8080](http://localhost:8080)  
- 
-You can replace the jetty plugin with something you feel comfortable using as well but make sure we have clear instructions to run your application. 
