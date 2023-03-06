@@ -6,7 +6,6 @@
 	<groupId>nz.co.solnet</groupId>
 	<artifactId>java-tasks-api</artifactId>
 	<version>1.0.0-SNAPSHOT</version>
-	<!--<packaging>war</packaging>-->
 
   <parent>
     <groupId>org.springframework.boot</groupId>
@@ -70,16 +69,6 @@
     <dependency>
       <groupId>com.h2database</groupId>
       <artifactId>h2</artifactId>
-      <scope>runtime</scope>
-    </dependency>
-    <dependency>
-      <groupId>com.mysql</groupId>
-      <artifactId>mysql-connector-j</artifactId>
-      <scope>runtime</scope>
-    </dependency>
-    <dependency>
-      <groupId>org.postgresql</groupId>
-      <artifactId>postgresql</artifactId>
       <scope>runtime</scope>
     </dependency>
 
@@ -236,7 +225,7 @@
       <name>Spring Snapshots</name>
       <url>https://repo.spring.io/snapshot</url>
       <snapshots>
-        <enabled>true</enabled>
+        <enabled>false</enabled>
       </snapshots>
     </repository>
     <repository>
@@ -244,7 +233,7 @@
       <name>Spring Milestones</name>
       <url>https://repo.spring.io/milestone</url>
       <snapshots>
-        <enabled>false</enabled>
+        <enabled>true</enabled>
       </snapshots>
     </repository>
   </repositories>
@@ -255,7 +244,7 @@
       <name>Spring Snapshots</name>
       <url>https://repo.spring.io/snapshot</url>
       <snapshots>
-        <enabled>true</enabled>
+        <enabled>false</enabled>
       </snapshots>
     </pluginRepository>
     <pluginRepository>
@@ -263,7 +252,7 @@
       <name>Spring Milestones</name>
       <url>https://repo.spring.io/milestone</url>
       <snapshots>
-        <enabled>false</enabled>
+        <enabled>true</enabled>
       </snapshots>
     </pluginRepository>
   </pluginRepositories>
