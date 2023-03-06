@@ -1,48 +1,47 @@
 <!DOCTYPE html>
 
-<html xmlns:th="https://www.thymeleaf.org"
-  th:replace="~{fragments/layout :: layout (~{::body},'tasks')}">
+<html xmlns:th="https://www.thymeleaf.org" th:replace="~{fragments/layout :: layout (~{::body},'tasks')}">
 
-  <body>
-    <h2>Task Information</h2>  
-  
-    <table class="table table-striped" th:object="${task}">
-      <tr>
-        <th>Title</th>
-        <td th:text="*{title}"></td>
-      </tr>
-      <tr>
-        <th>Description</th>
-        <td th:text="*{description}"></td>
-      </tr>
-      <tr>
-        <th>Status</th>
-        <td th:text="*{status}"></td>
-      </tr>
-      <tr>
-        <th>Due Date</th>
-        <td th:text="*{#temporals.format(dueDate, 'dd/MM/yyyy')}"></td>
-      </tr>
-      <tr>
-        <th>Creation Date</th>
-		<td th:text="*{#temporals.format(creationDate, 'dd/MM/yyyy')}"></td>
-      </tr>
-    </table>
-  
-    <a th:href="@{__${task.id}__/edit}" class="btn btn-primary">Edit Task</a>
+<body>
+	<h2>Task Information</h2>
+
+	<table class="table table-striped" th:object="${task}">
+		<tr>
+			<th>Title</th>
+			<td th:text="*{title}"></td>
+		</tr>
+		<tr>
+			<th>Description</th>
+			<td th:text="*{description}"></td>
+		</tr>
+		<tr>
+			<th>Status</th>
+			<td th:text="*{status}"></td>
+		</tr>
+		<tr>
+			<th>Due Date</th>
+			<td th:text="*{#temporals.format(dueDate, 'dd/MM/yyyy')}"></td>
+		</tr>
+		<tr>
+			<th>Creation Date</th>
+			<td th:text="*{#temporals.format(creationDate, 'dd/MM/yyyy')}"></td>
+		</tr>
+	</table>
+
+	<a th:href="@{__${task.id}__/edit}" class="btn btn-primary">Edit Task</a>
 
 	<div class="d-inline-block">
-	 <form action="#" th:action="@{/tasks/{id}(id=${task.id})}" th:object="${task}" method="post">
-	 	<input type="hidden" name="_method" value="delete" />
-        <button
-          class="btn btn-primary" type="submit">Delete Task
-        </button>
-        
-	 </form>
-	 </div>
-	  
-    <br />
-    <br />
-    <br />
-  </body>
+		<form action="#" th:action="@{/tasks/{id}(id=${task.id})}" th:object="${task}" method="post">
+			<input type="hidden" name="_method" value="delete" />
+			<button class="btn btn-primary" type="submit">Delete Task
+			</button>
+
+		</form>
+	</div>
+
+	<br />
+	<br />
+	<br />
+</body>
+
 </html>
