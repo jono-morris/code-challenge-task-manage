@@ -9,6 +9,9 @@ import org.springframework.data.repository.Repository;
 import org.springframework.data.repository.query.Param;
 import org.springframework.transaction.annotation.Transactional;
 
+/**
+ * A repository for performing CRUD actions on {@link Task} instances.
+ */
 public interface TaskRepository extends Repository<Task, Integer> {
 
 	/**
@@ -20,13 +23,23 @@ public interface TaskRepository extends Repository<Task, Integer> {
 	@Transactional(readOnly = true)
 	Task findById(@Param("id") Integer id);
 
+	/**
+	 * Retrieve all {@link Task}s from the data store.
+	 */
 	@Query("SELECT task FROM Task task ORDER BY task.dueDate DESC")
 	@Transactional(readOnly = true)
 	Page<Task> findAll(Pageable pageable);
 
+	/**
+	 * Retrieve {@link Tasks}s from the data store by date and status, returning all tasks
+	 * before the given due-date and with the given status.
+	 * @param dueDate the date tasks must be due before
+	 * @param status the task status to find
+	 * @return a Collection of matching {@link Tasks}s
+	 */
 	@Query("SELECT task FROM Task task WHERE task.dueDate < :date AND task.status = :status ORDER BY task.dueDate DESC")
 	@Transactional(readOnly = true)
-	Page<Task> findBeforeDateAndStatus(@Param("date") LocalDate date, @Param("status") TaskStatus status,
+	Page<Task> findBeforeDueDateAndStatus(@Param("date") LocalDate date, @Param("status") TaskStatus status,
 			Pageable pageable);
 
 	/**
@@ -34,17 +47,6 @@ public interface TaskRepository extends Repository<Task, Integer> {
 	 * @param task the {@link Task} to save
 	 */
 	void save(Task task);
-
-	/**
-	 * Retrieve {@link Tasks}s from the data store by status, returning all tasks whose
-	 * status is the given status.
-	 * @param lastName Value to search for
-	 * @return a Collection of matching {@link Tasks}s (or an empty Collection if none
-	 * found)
-	 */
-	@Query("SELECT task FROM Task task WHERE task.status =:status")
-	@Transactional(readOnly = true)
-	Page<Task> findByStatus(@Param("status") String status, Pageable pageable);
 
 	/**
 	 * Delete a {@link Task} from the data store.

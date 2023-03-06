@@ -6,8 +6,7 @@ import javax.persistence.Id;
 import javax.persistence.MappedSuperclass;
 
 /**
- * Simple JavaBean domain object with an id property. Used as a base class for objects
- * needing this property.
+ * Domain object with an id property.
  */
 @MappedSuperclass
 public class BaseEntity {

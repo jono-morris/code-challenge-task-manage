@@ -4,6 +4,9 @@ import org.springframework.util.StringUtils;
 import org.springframework.validation.Errors;
 import org.springframework.validation.Validator;
 
+/**
+ * Validates a {@link Task} object.
+ */
 public class TaskValidator implements Validator {
 
 	private static final String REQUIRED = "required";
@@ -11,10 +14,8 @@ public class TaskValidator implements Validator {
 	@Override
 	public void validate(Object obj, Errors errors) {
 		Task task = (Task) obj;
-		String title = task.getTitle();
 
-		// title validation
-		if (!StringUtils.hasLength(title)) {
+		if (!StringUtils.hasLength(task.getTitle())) {
 			errors.rejectValue("title", REQUIRED, REQUIRED);
 		}
 
