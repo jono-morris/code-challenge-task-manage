@@ -4,7 +4,7 @@ import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
 
 /**
- * The Task Spring Boot application.
+ * The Spring Boot application entry point.
  */
 @SpringBootApplication
 public class TaskApplication {

@@ -51,7 +51,7 @@ public class TaskController {
 	}
 	
 	/**
-	 * Fetches all pending overdue tasks held in the repository.
+	 * Fetches all overdue tasks held in the repository.
 	 * @return a collection of all overdue tasks retrieved from the repository
 	 */
 	@GetMapping("overdue")
@@ -66,11 +66,11 @@ public class TaskController {
 	 */
 	@PostMapping
 	public Task createTask(@Valid @RequestBody Task task) {
-		return  taskService.createTask(task);
+		return taskService.createTask(task);
 	}
 	
 	/**
-	 * Updates a {@code Task} in the repository.
+	 * Updates a single {@code Task}.
 	 * @param id the id of the {@code Task} to update
 	 * @param task details of the task instance to update
 	 * @return the updated {@code Task}
@@ -81,7 +81,7 @@ public class TaskController {
 	}
 	
 	/**
-	 * Deletes a {@code Task} from the repository.
+	 * Deletes a {@code Task} instance.
 	 * @param id the id of the {@code Task} to delete
 	 */
 	@DeleteMapping("{id}")

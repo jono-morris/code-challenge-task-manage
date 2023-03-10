@@ -35,7 +35,8 @@ public class TaskControllerApplicationTest {
 	@Test
 	public void getAllTasks() throws Exception {
 		assertThat(this.restTemplate.getForObject("http://localhost:" + port + "/v1/tasks/", String.class)).isEqualTo(
-				"[{\"id\":1,\"title\":\"task to do\",\"description\":\"future pending task\",\"status\":\"PENDING\",\"dueDate\":\"2023-05-02\",\"creationDate\":\"2023-03-05\"},{\"id\":2,\"title\":\"an overdue task\",\"description\":\"overdue pending task\",\"status\":\"PENDING\",\"dueDate\":\"2023-02-08\",\"creationDate\":\"2023-02-01\"}]");
+				"[{\"id\":1,\"title\":\"task to do\",\"description\":\"future pending task\",\"status\":\"PENDING\",\"dueDate\":\"2023-05-02\",\"creationDate\":\"2023-03-05\"},"
+						+ "{\"id\":2,\"title\":\"an overdue task\",\"description\":\"overdue pending task\",\"status\":\"PENDING\",\"dueDate\":\"2023-02-08\",\"creationDate\":\"2023-02-01\"}]");
 	}
 
 	/** Verify that all overdue tasks can be retrieved. */
@@ -77,20 +78,18 @@ public class TaskControllerApplicationTest {
 		this.restTemplate.put("http://localhost:" + port + "/v1/tasks/2", updatedTask);
 
 		// verify the record was updated
-		assertThat(this.restTemplate.getForObject("http://localhost:" + port + "/v1/tasks/", String.class))
+		assertThat(this.restTemplate.getForObject("http://localhost:" + port + "/v1/tasks/2", String.class))
 				.isEqualTo(String.format(
-						"[{\"id\":1,\"title\":\"task to do\",\"description\":\"future pending task\",\"status\":\"PENDING\",\"dueDate\":\"2023-05-02\",\"creationDate\":\"2023-03-05\"},"
-								+ "{\"id\":2,\"title\":\"an updated task\",\"description\":\"an updated task description\",\"status\":\"COMPLETED\",\"dueDate\":\"%s\",\"creationDate\":\"%s\"}]",
+						"{\"id\":2,\"title\":\"an updated task\",\"description\":\"an updated task description\",\"status\":\"COMPLETED\",\"dueDate\":\"%s\",\"creationDate\":\"%s\"}",
 						dueDate.format(formatter), creationDate.format(formatter)));
 
 		// restore the original task record
 		this.restTemplate.put("http://localhost:" + port + "/v1/tasks/2", originalTask);
 
 		// verify the record has been restored
-		assertThat(this.restTemplate.getForObject("http://localhost:" + port + "/v1/tasks/", String.class))
+		assertThat(this.restTemplate.getForObject("http://localhost:" + port + "/v1/tasks/2", String.class))
 				.isEqualTo(String.format(
-						"[{\"id\":1,\"title\":\"task to do\",\"description\":\"future pending task\",\"status\":\"PENDING\",\"dueDate\":\"2023-05-02\",\"creationDate\":\"2023-03-05\"},"
-								+ "{\"id\":2,\"title\":\"an overdue task\",\"description\":\"overdue pending task\",\"status\":\"PENDING\",\"dueDate\":\"2023-02-08\",\"creationDate\":\"2023-02-01\"}]"));
+						"{\"id\":2,\"title\":\"an overdue task\",\"description\":\"overdue pending task\",\"status\":\"PENDING\",\"dueDate\":\"2023-02-08\",\"creationDate\":\"2023-02-01\"}"));
 	}
 
 	/** Verify that a single Task can be added. */

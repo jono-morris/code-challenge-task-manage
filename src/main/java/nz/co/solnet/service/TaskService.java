@@ -11,20 +11,20 @@ public interface TaskService {
 
 	/**
 	 * Creates a new {@code Task}.
-	 * @param task
-	 * @return
+	 * @param task the {@code Task} instance to save
+	 * @return the created {@code Task}
 	 */
 	public Task createTask(Task task);
 
 	/**
-	 * Retrieves a {@code Task} by Id.
-	 * @param taskId
-	 * @return
+	 * Retrieves a {@code Task} by id.
+	 * @param id the id of the {@code Task} to retrieve
+	 * @return the found {@code Task} if any
 	 */
 	public Optional<Task> getTaskById(int id);
 
 	/**
-	 * Gets all {@code Tasks}.
+	 * Gets all {@code Tasks} from the repository.
 	 * @return a collection of all {@code Tasks}
 	 */
 	public Iterable<Task> getTasks();
@@ -39,8 +39,8 @@ public interface TaskService {
 	 * Updates a {@code Task} instance.
 	 * 
 	 * @param id the id of the {@code Task} to update  
-	 * @param task the {@code Task} to update
-	 * @return details of the updated {@code Task}
+	 * @param task details of the {@code Task} to update
+	 * @return the updated {@code Task}
 	 */
 	public Task updateTask(int id, Task task);
 

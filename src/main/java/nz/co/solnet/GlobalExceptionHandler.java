@@ -43,7 +43,7 @@ public class GlobalExceptionHandler extends ResponseEntityExceptionHandler {
 	}
 	
 	/**
-	 * Handles {@link TaskNotFoundException} thrown when a resource could not be found in the remote system.
+	 * Handles {@link TaskNotFoundException} thrown when a resource could not be found.
 	 * @param ex the exception to handle
 	 * @return Not Found (status code 404)
 	 */

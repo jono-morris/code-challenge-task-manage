@@ -145,6 +145,19 @@ public class TaskControllerTest {
 		Mockito.verify(tasksServicetasks).createTask(any(Task.class));
 	}
 
+	
+	/** Verify that an error is returned when attempting to add a task with incomplete information. */
+	@Test
+	void testCreateFailure() throws Exception {
+		Task task = task();
+		task.setTitle("");
+		task.setCreationDate(null);
+		
+		mockMvc.perform(post("/v1/tasks/").contentType(MediaType.APPLICATION_JSON).content(toJsonString(task)))
+				.andExpect(status().is4xxClientError()).andExpect(content().contentType(MediaType.APPLICATION_JSON))
+				.andExpect(content().json("{'errors':['creation date required', 'title required']}"));
+	}
+	
 	/**
 	 * Utility method for converting a Task to a JSON string.
 	 */

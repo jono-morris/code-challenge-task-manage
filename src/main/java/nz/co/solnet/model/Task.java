@@ -78,5 +78,4 @@ public class Task extends BaseEntity {
 	public void setTitle(String title) {
 		this.title = title;
 	}
-
 }

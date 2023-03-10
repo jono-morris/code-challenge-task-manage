@@ -6,7 +6,7 @@ import javax.persistence.Id;
 import javax.persistence.MappedSuperclass;
 
 /**
- * Domain object with an id property.
+ * Base domain object with an id property.
  */
 @MappedSuperclass
 public class BaseEntity {
@@ -22,9 +22,4 @@ public class BaseEntity {
 	public void setId(Integer id) {
 		this.id = id;
 	}
-
-//	public boolean isNew() {
-//		return this.id == null;
-//	}
-
 }
