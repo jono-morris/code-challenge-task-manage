@@ -1,4 +1,4 @@
-package nz.co.solnet;
+package nz.co.solnet.model;
 
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
@@ -23,8 +23,8 @@ public class BaseEntity {
 		this.id = id;
 	}
 
-	public boolean isNew() {
-		return this.id == null;
-	}
+//	public boolean isNew() {
+//		return this.id == null;
+//	}
 
 }

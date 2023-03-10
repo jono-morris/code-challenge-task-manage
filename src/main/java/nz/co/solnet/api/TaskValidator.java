@@ -1,8 +1,10 @@
-package nz.co.solnet;
+package nz.co.solnet.api;
 
 import org.springframework.util.StringUtils;
 import org.springframework.validation.Errors;
 import org.springframework.validation.Validator;
+
+import nz.co.solnet.model.Task;
 
 /**
  * Validates a {@link Task} object.

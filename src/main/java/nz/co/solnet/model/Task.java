@@ -1,4 +1,4 @@
-package nz.co.solnet;
+package nz.co.solnet.model;
 
 import java.time.LocalDate;
 
@@ -7,6 +7,8 @@ import javax.persistence.Entity;
 import javax.persistence.EnumType;
 import javax.persistence.Enumerated;
 import javax.persistence.Table;
+import javax.validation.constraints.NotEmpty;
+import javax.validation.constraints.NotNull;
 
 import org.springframework.format.annotation.DateTimeFormat;
 
@@ -18,6 +20,7 @@ import org.springframework.format.annotation.DateTimeFormat;
 public class Task extends BaseEntity {
 
 	@Column(name = "title")
+	@NotEmpty(message = "title required")
 	private String title;
 
 	@Column(name = "description")
@@ -33,6 +36,7 @@ public class Task extends BaseEntity {
 
 	@Column(name = "creation_date")
 	@DateTimeFormat(pattern = "yyyy-MM-dd")
+	@NotNull(message = "creation date required")
 	private LocalDate creationDate;
 
 	public LocalDate getCreationDate() {

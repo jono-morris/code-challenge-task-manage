@@ -1,4 +1,4 @@
-package nz.co.solnet;
+package nz.co.solnet.model;
 
 /**
  * Status values that a {@link Task} may have during it's life-cycle.
